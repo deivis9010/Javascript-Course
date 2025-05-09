@@ -55,16 +55,45 @@ export type PantanoResponse = {
 //   ).then(res => res.text())
 //   .then(text => console.log(text))
 
-let headersList = {
-  Accept: "*/*",
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
-};
+// let headersList = {
+//   Accept: "*/*",
+//   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+// };
 
-fetch(
-  "https://saihtajo.chtajo.es/ajax.php?url=%2Ftr%2Fajax_datos_estacion%2Festacion%3AE_19",
-  {
-    method: "GET",
-    headers: headersList,
+// fetch(
+//   "https://saihtajo.chtajo.es/ajax.php?url=%2Ftr%2Fajax_datos_estacion%2Festacion%3AE_19",
+//   {
+//     method: "GET",
+//     headers: headersList,
+//   }
+// ).then((res) => res.text())
+// .then(text => console.log(text));
+
+
+let numbers: number[] = [1, 2, 3, 4, 5];
+let strings: string[] = ["a", "b", "c"];   
+
+
+ enum Direccion {
+  Norte, Sur, Este, Oeste
+ }   
+ 
+ 
+class Persona {
+  nombre: string;
+  edad: number;
+  
+  
+
+  constructor(nombre: string, edad: number) {
+    this.nombre = nombre;
+    this.edad = edad;
+
   }
-).then((res) => res.text())
-.then(text => console.log(text));
+ 
+
+
+
+}
+console.log(new Persona("Juan", 30));
+console.log(new Persona("Maria", 25));
