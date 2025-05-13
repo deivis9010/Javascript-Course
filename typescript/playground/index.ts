@@ -19,10 +19,10 @@ type Contenido = {
   num_camaras: number;
   datos_tr: DatoTr[];
 };
-
-export type PantanoResponse = {
-  contenido: Contenido;
-};
+//Comentado porque esta siendo usado mas abajo en codigo de Lucas
+// export type PantanoResponse = {
+//   contenido: Contenido;
+// };
 
 // export const getPantanoStatus = async (): Promise<PantanoResponse> => {
 //   let response = await fetch(
@@ -70,33 +70,7 @@ export type PantanoResponse = {
 // .then(text => console.log(text));
 
 
-let numbers: number[] = [1, 2, 3, 4, 5];
-let strings: string[] = ["a", "b", "c"];   
 
-
- enum Direccion {
-  Norte, Sur, Este, Oeste
- }   
- 
- 
-class Persona {
-  nombre: string;
-  edad: number;
-  
-  
-
-  constructor(nombre: string, edad: number) {
-    this.nombre = nombre;
-    this.edad = edad;
-
-  }
- 
-
-
-
-}
-console.log(new Persona("Juan", 30));
-console.log(new Persona("Maria", 25));
 function getObjectKeys<T extends object>(obj: T): (keyof T)[] {
   return Object.keys(obj) as (keyof T)[];
 }
@@ -104,13 +78,15 @@ const sum = (a: number, b: number): number => a + b;
 // Example usage of the arrow function
 console.log("Suma de 5 y 3:", sum(5, 3));
 
-type Person = {
-  descripcion: string;
-  tipo_senal: string;
+
+ type Person = {
+  nombre: string;
+  apellidos: string;
   edad: number;
-  unidad: string;
+  ciudad: string;
   trabajo?: string; // Hacemos trabajo opcional por si alguien está desempleado o es estudiante
 };
+
 const persona1: Person = {
   nombre: "Ana",
   apellidos: "García López",
@@ -146,19 +122,26 @@ console.log("Claves de persona3:", getObjectKeys(persona3));
 
 // Ejemplo con un objeto diferente para demostrar la genericidad
 const coche: {
-  ultima_fecha: string;
-  valores_ultimo_dia: string;
+  marca: string;
+  modelo: string;
   año: number;
 } = {
     marca: "Toyota",
     modelo: "Corolla",
     año: 2021
+};
+
 console.log("Claves de coche:", getObjectKeys(coche));
+
 let name1: string = "Juan";
+
 let name2: any = "Pedro"; // Inferido como string
 name2 = 12; // Cambiando el valor de name2
+
 let numbers: number[] = [1, 2, 3, 4, 5];
+
 const sumaNumeros = (num1: number, num2: number) => num1 + num2;
+
 enum Direccion {
   Norte = "norte",
   Sur = "sur",
@@ -195,11 +178,14 @@ type Student = {
   name: string;
   age: number;
   isStudent: boolean;
-export type PantanoResponse = {
+};
+
+const person1: Student = {
   name: "John Doe",
   age: 23,
   isStudent: true
 }
+
 interface Person1 {
   name: string;
   age: number;
@@ -208,6 +194,7 @@ interface Person1 {
 }
 
 console.log("-------------");
+
 
 function padLeft(value: string, padding: string|number) {
   if (typeof padding === "number") {
@@ -262,17 +249,24 @@ function getSmallPet(): Fish | Bird | Dog {
     breath: function () {
       console.log("breathing");
     },
+  };
 }
 let pet = getSmallPet();
+
 pet.breath();
+
 move(pet);
+
 function isFish(pet: Fish | Bird| Dog ): pet is Fish {
   return (pet as Fish).swim !== undefined;
 }
+
 function isBird(pet: Fish | Bird| Dog ): pet is Bird {
   return (pet as Bird).fly !== undefined;
-//     }
+}
+
 pet.breath();
+
 if (isFish(pet)) {
   pet.swim();
   pet.breath();
@@ -283,63 +277,89 @@ if (isFish(pet)) {
   pet.walk();
   pet.breath();
 }
+
 const pet2 = pet as Fish;
+
 console.log("-------------");
+
 const names = ["Alice", "Bob", "Eve"];
+
 names.forEach((s) => {
   console.log(s.toUpperCase()); // Will trigger -> Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
 });
+
 let person: {
   name: string;
   age: number;
   isStudent?: boolean;
 } = {name: "Lucas", age: 28};
+
+
 class Student1 {
   name: string;
   age: number;
+
   constructor(name: string, age: number) {
       this.name = name;
       this.age = age;
   }
+
   displayInfo(): void {
       console.log(`Hello my name is ${this.name} and I'm ${this.age}`);
-// });
+  }
 }
+
 const arrStringYNumber: Array<string|number> = ["Hola", 12, "Mundo", 34];
+
 const lastNumber = <T>(arr: Array<T>): T | undefined => {
   return arr[arr.length - 1];
-//     {
+}
+
 console.log("--------------");
+
 const lNumber = lastNumber([2, 4, 5]);
 const lString = lastNumber(["a", "b", "c"]); 
 const lArray = lastNumber(["a", "b", ["asd"]]); 
 console.log(lNumber); // 5
+
+
 interface Message<T> {
   id: string;
   timestamp: number;
   data: T;
-//       }
+}
+
 type MessageNumber = Message<number>;
 let messageNumber: MessageNumber = {id: "as8df90asdf", timestamp: 23429342349, data: 23482934092384092384029384293840238};
 console.log(messageNumber);
+
 type MessageString = Message<string>;
 let messageString: MessageString = {id: "oiausdf989as", timestamp: 38495830989, data: "Hello World"};
 console.log(messageString);
+
 type MessageObject = Message<{ name: string; age: number }>;
 let messageObject: MessageObject = {id: "oiausdf989as", timestamp: 38495830989, data: {name: "Lucas", age: 28}};
+
+
 type Point = { x: number; y: number };
 type P = keyof Point; // "x" | "y"
 let point: P = "x";
+
+
 type Staff = {
   name: string;
   salary: number;
+};
+
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
+
 const developer: Staff = {
   name: "Tobias",
   salary: 100,
 };
+
 const nameType = getProperty(developer, "name");
 
 console.log(nameType); // Tobias
@@ -350,16 +370,20 @@ type Mail = {
   header: string;
   body: string;
   timestamp: number;
-  {
+}
+
 interface MailInterface {
-    headers: headersList,
+  header: string;
   body: string;
   timestamp: number;
+}
+
 function printMail(mail: MailInterface) {
   console.log(`${mail.header} - ${mail.timestamp}`);
   console.log(`---------------------------------`);
   console.log(`${mail.body}`);
 }
+
 interface PersonNew {
     name: string;
     age: number;
