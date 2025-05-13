@@ -159,32 +159,43 @@ console.log("-------------");
 
 type Fish = { swim: () => void, breath: () => void };
 type Bird = { fly: () => void, breath: () => void };
+type Dog = { walk: () => void, breath: () => void };
 
-function move(animal: Fish | Bird) {
+function move(animal: Fish | Bird | Dog) {
   if ("swim" in animal) {
     return animal.swim();
+  }
+
+    if ("walk" in animal) {
+    return animal.walk();
   }
 
   return animal.fly();
 }
 
-function getSmallPet(): Fish | Bird {
+function getSmallPet(): Fish | Bird | Dog {
   return {
     swim: function () {
       console.log("swimming");
     },
     breath: function () {
       console.log("breathing");
-    }
+    },
   };
 }
 
 let pet = getSmallPet();
 
+pet.breath();
+
 move(pet);
 
-function isFish(pet: Fish | Bird): pet is Fish {
+function isFish(pet: Fish | Bird| Dog ): pet is Fish {
   return (pet as Fish).swim !== undefined;
+}
+
+function isBird(pet: Fish | Bird| Dog ): pet is Bird {
+  return (pet as Bird).fly !== undefined;
 }
 
 pet.breath();
@@ -192,10 +203,15 @@ pet.breath();
 if (isFish(pet)) {
   pet.swim();
   pet.breath();
-} else {
+} else if(isBird(pet)) {
   pet.fly();
   pet.breath();
+} else {
+  pet.walk();
+  pet.breath();
 }
+
+const pet2 = pet as Fish;
 
 console.log("-------------");
 
@@ -280,3 +296,39 @@ const developer: Staff = {
 const nameType = getProperty(developer, "name");
 
 console.log(nameType); // Tobias
+
+
+
+type Mail = {
+  header: string;
+  body: string;
+  timestamp: number;
+}
+
+interface MailInterface {
+  header: string;
+  body: string;
+  timestamp: number;
+}
+
+function printMail(mail: MailInterface) {
+  console.log(`${mail.header} - ${mail.timestamp}`);
+  console.log(`---------------------------------`);
+  console.log(`${mail.body}`);
+}
+
+interface PersonNew {
+    name: string;
+    age: number;
+    id?: string;
+    talk:(message: string)=>void;
+}
+
+const personNew: PersonNew = {
+  name: "Lucas",
+  age: 28,
+    id: "123456789",
+  talk: (message: string) => {
+    console.log(message);
+  }
+};
